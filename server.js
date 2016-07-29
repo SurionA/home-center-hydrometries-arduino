@@ -1,6 +1,6 @@
 var SerialPort = require('serialport');
 
-var serial = new SerialPort('/dev/cu.usbmodem1411', {
+var serial = new SerialPort('/dev/ttyACM0', {
   parser: SerialPort.parsers.readline('\r\n'),
   baudrate: 115200,
 });
@@ -13,7 +13,7 @@ serial.on('data', function (chunk) {
 
   var data = JSON.parse(chunk);
   var options = {
-    uri: 'http://127.0.0.1:9191/api/hydrometries',
+    uri: 'https://arcane-atoll-59798.herokuapp.com/api/hydrometries',
     method: 'POST',
     json: {
       room: "5793cd567899cf0410b8bbb9",
@@ -23,7 +23,7 @@ serial.on('data', function (chunk) {
   };
   request.post(options, function (error, response, body) {
     if(response.statusCode == 201){
-      console.log('document saved as: http://127.0.0.1:9191/api/hydrometries');
+      console.log('document saved as: https://arcane-atoll-59798.herokuapp.com/api/hydrometries');
     } else {
       console.log('error: '+ response.statusCode);
       console.log(body);
