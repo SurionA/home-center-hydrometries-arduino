@@ -2,7 +2,7 @@
   "name": "nodeHomeTemperatureMonitor",
   "version": "0.0.1",
   "description": "Store, serve data about temperature and humidity at home",
-  "keywords": "serial, socket.io, node-serialport",
+  "keywords": "serial, node-serialport",
   "author": {
     "name": "SurionA"
   },
@@ -10,6 +10,6 @@
     "express": "^4.14.0",
     "request": "^2.73.0",
     "serialport": "^4.0.1",
-    "socket.io": "^1.4.8"
+    "dotenv-safe": "^3.0.0"
   }
 }
