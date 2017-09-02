@@ -1,6 +1,6 @@
 var SerialPort = require('serialport');
-
-var serial = new SerialPort('/dev/ttyACM0', {
+//ttyACM0
+var serial = new SerialPort('/dev/ttyUSB0', {
   parser: SerialPort.parsers.readline('\r\n'),
   baudrate: 115200,
 });
@@ -13,15 +13,21 @@ serial.on('data', function (chunk) {
 
   var data = JSON.parse(chunk);
   var options = {
-    uri: 'https://arcane-atoll-59798.herokuapp.com/api/hydrometries',
+    uri: 'http://home.suriona.com/home-monitor/api/hydrometries',
     method: 'POST',
     json: {
-      room: "5793cd567899cf0410b8bbb9",
-      temperature: data.temperature,
-      humidity: data.humidity
+      room: "579b40bb50088b03002850ed",
+      inside_temperature: data.temperature,
+      inside_humidity: data.humidity
     }
   };
-  request.post(options, function (error, response, body) {
+request('http://www.prevision-meteo.ch/services/json/pecq', function (error, response, body) {
+  body = JSON.parse(body);
+  console.log('body', body.current_condition);
+  options.json.outside_temperature = body.current_condition.tmp;
+  options.json.outside_humidity = body.current_condition.humidity;
+
+	request.post(options, function (error, response, body) {
     if(response.statusCode == 201){
       console.log('document saved as: https://arcane-atoll-59798.herokuapp.com/api/hydrometries');
     } else {
@@ -29,6 +35,7 @@ serial.on('data', function (chunk) {
       console.log(body);
     }
   });
+});
   console.log('temperature: ', data.temperature);
   console.log('humidity: ', data.humidity);
 });
