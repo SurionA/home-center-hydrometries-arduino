@@ -1,15 +1,32 @@
 {
-  "name": "nodeHomeTemperatureMonitor",
-  "version": "0.0.1",
-  "description": "Store, serve data about temperature and humidity at home",
-  "keywords": "serial, node-serialport",
-  "author": {
-    "name": "SurionA"
+  "name": "home-center-hydrometries-arduino",
+  "version": "1.0.0",
+  "description": "WebSocket handler to manage local and external hydrometris",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SurionA <frere.maxime@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SurionA/home-center-hydrometries-arduino.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "8.4.0",
+    "npm": "5.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.1",
+    "socket.io": "^2.0.3"
   },
   "dependencies": {
-    "express": "^4.14.0",
-    "request": "^2.73.0",
-    "serialport": "^4.0.1",
-    "dotenv-safe": "^3.0.0"
+    "axios": "^0.16.2",
+    "serialport": "^5.0.0",
+    "winston": "^2.3.1"
   }
 }
